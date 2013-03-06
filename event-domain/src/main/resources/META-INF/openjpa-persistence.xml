@@ -1,0 +1,40 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+
+	<persistence-unit name="fis" transaction-type="JTA">
+		<description>Persistence unit for the example blogging application</description>
+
+<!-- 		<provider>org.hibernate.ejb.HibernatePersistence</provider> -->
+<!-- 		<provider>org.hibernate.osgi.HibernateBundleActivator</provider> -->
+		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+
+		<!-- <jta-data-source>osgi:service/jdbc/fis</jta-data-source> -->
+		<!-- <non-jta-data-source>osgi:service/jdbc/fis</non-jta-data-source> -->
+		<jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/fis)</jta-data-source>
+
+		<!-- <class>sk.seges.fis.event.server.domain.Event</class> -->
+
+		<!-- <class>org.apache.aries.samples.blog.persistence.jpa.entity.AuthorImpl</class> -->
+		<!-- <class>org.apache.aries.samples.blog.persistence.jpa.entity.EntryImpl</class> -->
+		<!-- <exclude-unlisted-classes>true</exclude-unlisted-classes> -->
+
+
+		<properties>
+				<!-- These properties are creating the database on the fly. We are using 
+			them to avoid users having to create a database to run the sample. This is 
+			not something that should be used in production. See also the create=true 
+			line in the blog-datasource blueprint meta data -->
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+			<property name="openjpa.jdbc.DBDictionary" value="postgres"/>
+		
+		
+<!-- 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" /> -->
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> -->
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+		</properties>
+
+
+	</persistence-unit>
+</persistence>

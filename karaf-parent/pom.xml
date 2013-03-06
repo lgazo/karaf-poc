@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- The Basics -->
+	<groupId>sk.seges.fis</groupId>
+	<artifactId>karaf-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<!-- More Project Information -->
+	<name>karaf-parent</name>
+	<properties>
+
+		<!-- from Sonatype -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	
+	
+		<maven.version>[2.1.0,)</maven.version>
+		<jdk.version>1.6</jdk.version>
+
+	
+		<log4j.version>1.2.14</log4j.version>
+		<slf4j.version>1.5.8</slf4j.version>
+		
+		<postgresql.version>8.4-701.jdbc4</postgresql.version>
+		<hsqldb.version>1.8.0.7</hsqldb.version>
+		<h2.version>1.1.117</h2.version>
+
+		<!-- Eclipse -->
+		<eclipse.jdt.version>3.7.1</eclipse.jdt.version>
+		
+		<!--
+			JPA version is taken from org.hibernate:ejb3-persistence, it looks
+			maintained. There is also javax.persistence:persistence-api but this
+			is curiously not used by hibernate-entitymanager (it references
+			ejb3-persistence).
+			
+			For JPA use org.hibernate:ejb3-persistence.
+		-->
+		<jpa.version>1.0.2.GA</jpa.version>
+		<jpa-2.0.version>1.0.0.Final</jpa-2.0.version>
+		<validation-api.version>1.0.0.GA</validation-api.version>
+
+		<openjpa.version>2.2.1</openjpa.version>
+
+	</properties>
+	<build>
+		<pluginManagement>
+			<plugins>
+
+		<profile>
+			<id>osgi-bundle</id>
+			<activation>
+				<file>
+					<exists>${basedir}/.osgi-bundle</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+		            <plugin>
+		                <groupId>org.apache.felix</groupId>
+		                <artifactId>maven-bundle-plugin</artifactId>
+		                <version>2.3.7</version>
+		                <extensions>true</extensions>
+		                <configuration>
+		                    <instructions>
+		                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+		                    </instructions>
+		                </configuration>
+		            </plugin>
+				</plugins>		            
+			</build>			
+		</profile>		
+
+		<profile>
+			<id>osgi-jpa-bundle</id>
+			<activation>
+				<file>
+					<exists>${basedir}/.osgi-jpa-bundle</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+		            <plugin>
+		                <groupId>org.apache.felix</groupId>
+		                <artifactId>maven-bundle-plugin</artifactId>
+		                <version>2.3.7</version>
+		                <extensions>true</extensions>
+		                <configuration>
+		                    <instructions>
+		                        <Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
+		                    </instructions>
+		                </configuration>
+		            </plugin>
+				</plugins>		            
+			</build>			
+			</profile>
+		<profile>
+			<id>jpa-openjpa</id>
+			<activation>
+				<file>
+					<exists>${basedir}/.jpa-openjpa</exists>
+				</file>
+			</activation>
+	
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.openjpa</groupId>
+						<artifactId>openjpa</artifactId>
+						<version>${openjpa.version}</version>
+					</dependency>	
+				</dependencies>
+			</dependencyManagement>
+			<build>
+	
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>openjpa-maven-plugin</artifactId>
+						<configuration>
+							<addDefaultConstructor>true</addDefaultConstructor>
+							<enforcePropertyRestriction>true</enforcePropertyRestriction>
+							<persistenceXmlFile>META-INF/openjpa-persistence.xml</persistenceXmlFile>
+						</configuration>
+						<executions>
+							<execution>
+								<id>enhancer</id>
+								<phase>process-classes</phase>
+								<goals>
+									<goal>enhance</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.openjpa</groupId>
+								<artifactId>openjpa</artifactId>
+								<version>${openjpa.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.slf4j</groupId>
+								<artifactId>slf4j-api</artifactId>
+								<version>${slf4j.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+	
+				</plugins>
+			</build>
+		</profile>	
+				
+	</profiles>
+</project>

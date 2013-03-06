@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<properties>
+		<bundle.symbolicName>sk.seges.fis.customer-domain</bundle.symbolicName>
+		<bundle.namespace>sk.seges.fis.customer_domain</bundle.namespace>
+	</properties>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>sk.seges.fis</groupId>
+	<artifactId>customer-domain</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>${bundle.symbolicName} [${bundle.namespace}]</name>
+
+	<packaging>bundle</packaging>
+
+	<!--parent>
+		<groupId>sk.seges.sesam</groupId>
+		<artifactId>sesam-os-base-parent</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent-->
+	<parent>
+		<groupId>sk.seges.fis</groupId>
+		<artifactId>karaf-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jpa_2.0_spec</artifactId>
+			<version>1.1</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Private-Package>sk.seges.fis.customer.server.domain.*</Private-Package>
+						<Export-Package>sk.seges.fis.customer.server.domain.*</Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint default-activation="eager"
+	xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<reference id="eventService" interface="sk.seges.fis.event.server.service.EventService"></reference>
+	
+	<command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+		<command name="fis/eventadd">
+			<action class="sk.seges.fis.shell.CreateEventCommand">
+				<property name="eventService" ref="eventService" />
+			</action>
+		</command>
+	</command-bundle>
+</blueprint>

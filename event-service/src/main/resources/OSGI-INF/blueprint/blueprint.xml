@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0"
+	xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
+	default-activation="lazy">
+
+	<bean id="serviceImpl" class="sk.seges.fis.event.server.service.EventServiceImpl">
+<!-- 		<tx:transaction method="*" value="Required"></tx:transaction> -->
+<!-- 		<jpa:context property="entityManager" unitname="fis"></jpa:context> -->
+	</bean>
+	
+	<service ref="serviceImpl" interface="sk.seges.fis.event.server.service.EventService"></service>
+</blueprint>
