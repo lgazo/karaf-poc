@@ -8,17 +8,18 @@
 
 <!-- 		<provider>org.hibernate.ejb.HibernatePersistence</provider> -->
 <!-- 		<provider>org.hibernate.osgi.HibernateBundleActivator</provider> -->
-		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+<!-- 		<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider> -->
 
 		<!-- <jta-data-source>osgi:service/jdbc/fis</jta-data-source> -->
 		<!-- <non-jta-data-source>osgi:service/jdbc/fis</non-jta-data-source> -->
 		<jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/fis)</jta-data-source>
 
+		<class>sk.seges.fis.customer.server.domain.Address</class>
 		<class>sk.seges.fis.customer.server.domain.Person</class>
 		<class>sk.seges.fis.customer.server.domain.Address</class>
 		<class>sk.seges.fis.customer.server.domain.Customer</class>
-		<class>sk.seges.fis.customer.server.domain.PersonCustomer</class>
-		<class>sk.seges.fis.customer.server.domain.CompanyCustomer</class>
+<!-- 		<class>sk.seges.fis.customer.server.domain.PersonCustomer</class> -->
+<!-- 		<class>sk.seges.fis.customer.server.domain.CompanyCustomer</class> -->
 		<class>sk.seges.fis.event.server.domain.Event</class>
 
 		<!-- <class>org.apache.aries.samples.blog.persistence.jpa.entity.AuthorImpl</class> -->
@@ -34,10 +35,20 @@
 			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
 			<property name="openjpa.jdbc.DBDictionary" value="postgres"/>
 		
+		<!-- If metadata defaults is true Hibernate wants to get a connection 
+				when entityManager is created. Aries JPA does not work in this case as it 
+				starts the entitymanager when the bundle is in RESOLVED state and BundleContext 
+				is not available at that time. -->
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false" />
 		
 <!-- 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" /> -->
-<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> -->
-<!-- 			<property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			
+<!-- 			<property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory" /> -->
+<!-- 			<property name="hibernate.transaction.jta.platform" -->
+<!--                       value="org.hibernate.service.jta.platform.internal.JBossStandAloneJtaPlatform" /> -->
+			
 		</properties>
 
 

@@ -24,8 +24,8 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	private Date start;
-	private Date end;
+	private Date startDate;
+	private Date endDate;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private Customer customer;
 
@@ -37,20 +37,20 @@ public class Event {
 		this.id = id;
 	}
 
-	public Date getStart() {
-		return start;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setStart(Date start) {
-		this.start = start;
+	public void setStartDate(Date start) {
+		this.startDate = start;
 	}
 
-	public Date getEnd() {
-		return end;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setEnd(Date end) {
-		this.end = end;
+	public void setEndDate(Date end) {
+		this.endDate = end;
 	}
 
 	public Customer getCustomer() {

@@ -1,12 +1,9 @@
 package sk.seges.fis.customer.server.domain;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("person")
 public class CompanyCustomer extends Customer {
 	private String companyName;

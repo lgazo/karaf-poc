@@ -33,5 +33,26 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<type>bundle</type>
 		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.aries.transaction</groupId> -->
+<!-- 			<artifactId>org.apache.aries.transaction.blueprint</artifactId> -->
+<!-- 			<version>1.0.0</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.aries.transaction</groupId> -->
+<!-- 			<artifactId>org.apache.aries.transaction.manager</artifactId> -->
+<!-- 			<version>1.0.1</version> -->
+<!-- 			<scope>provided</scope> -->
+<!-- 		</dependency> -->
+		
 	</dependencies>
 </project>

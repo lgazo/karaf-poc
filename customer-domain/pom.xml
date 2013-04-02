@@ -45,6 +45,7 @@
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Private-Package>sk.seges.fis.customer.server.domain.*</Private-Package>
 						<Export-Package>sk.seges.fis.customer.server.domain.*</Export-Package>
+						<Import-Package>org.hibernate.proxy,javassist.util.proxy,*</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>

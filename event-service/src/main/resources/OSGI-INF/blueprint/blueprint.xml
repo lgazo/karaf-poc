@@ -6,8 +6,8 @@
 	default-activation="lazy">
 
 	<bean id="serviceImpl" class="sk.seges.fis.event.server.service.EventServiceImpl">
-<!-- 		<tx:transaction method="*" value="Required"></tx:transaction> -->
-<!-- 		<jpa:context property="entityManager" unitname="fis"></jpa:context> -->
+		<tx:transaction method="*" value="Required"></tx:transaction>
+		<jpa:context property="entityManager" unitname="fis"></jpa:context>
 	</bean>
 	
 	<service ref="serviceImpl" interface="sk.seges.fis.event.server.service.EventService"></service>

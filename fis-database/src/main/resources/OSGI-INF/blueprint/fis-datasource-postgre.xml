@@ -7,15 +7,40 @@ Install the driver in Karaf. As it is no bundle we use the wrap protocol to crea
 As a last step copy this file to the deploy folder
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
-  
-   <bean id="dataSource" class="org.postgresql.ds.PGPoolingDataSource" destroy-method="close">
-      <property name="serverName" value="localhost:5432/fis2"/>
-      <property name="user" value="postgres"/>
-      <property name="password" value="postgres"/>
-      <property name="dataSourceName" value="fis2"/>
-      <property name="initialConnections" value="2"/>
-      <property name="maxConnections" value="4" />
-  </bean>
+
+<!-- 	<bean id="dataSource" class="org.postgresql.ds.PGConnectionPoolDataSource" -->
+<!-- 		destroy-method="close"> -->
+<!-- 		<property name="databaseName" value="fis2" /> -->
+<!-- 		<property name="serverName" value="localhost" /> -->
+<!-- 		<property name="portNumber" value="5432" /> -->
+<!-- 		<property name="user" value="postgres" /> -->
+<!-- 		<property name="password" value="postgres" /> -->
+		<!-- INFO = 1, DEBUG = 2 -->
+<!-- 		<property name="logLevel" value="2" /> -->
+<!-- 	</bean> -->
+
+
+	<bean id="dataSource" class="org.postgresql.ds.PGPoolingDataSource"
+		destroy-method="close">
+		<property name="serverName" value="localhost:5432/fis2" />
+		<property name="user" value="postgres" />
+		<property name="password" value="postgres" />
+		<property name="dataSourceName" value="fis2" />
+		<property name="initialConnections" value="2" />
+		<!-- INFO = 1, DEBUG = 2 -->
+		<property name="logLevel" value="2" />
+		<property name="maxConnections" value="4" />
+	</bean>
+
+
+<!-- 	<bean id="dataSource" class="org.postgresql.xa.PGXADataSource"> -->
+<!-- 		<property name="serverName" value="localhost" /> -->
+<!-- 		<property name="user" value="postgres" /> -->
+<!-- 		<property name="password" value="postgres" /> -->
+<!-- 		<property name="databaseName" value="fis2" /> -->
+		<!-- INFO = 1, DEBUG = 2 -->
+<!-- 		<property name="logLevel" value="2" /> -->
+<!-- 	</bean> -->
   
   <service interface="javax.sql.DataSource" ref="dataSource">
     <service-properties>

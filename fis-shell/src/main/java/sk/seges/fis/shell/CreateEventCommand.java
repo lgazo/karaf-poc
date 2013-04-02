@@ -4,12 +4,11 @@
 package sk.seges.fis.shell;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.apache.felix.gogo.commands.Action;
-import org.apache.felix.gogo.commands.Argument;
-import org.apache.felix.gogo.commands.Command;
 import org.apache.felix.service.command.CommandSession;
+import org.apache.karaf.shell.commands.Action;
+import org.apache.karaf.shell.commands.Argument;
+import org.apache.karaf.shell.commands.Command;
 
 import sk.seges.fis.event.server.service.EventService;
 
@@ -28,7 +27,7 @@ public class CreateEventCommand implements Action {
 	public void setEventService(EventService eventService) {
 		this.eventService = eventService;
 	}
-	
+
 	@Override
 	public Object execute(CommandSession arg0) throws Exception {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");

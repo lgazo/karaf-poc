@@ -40,19 +40,21 @@
 		</dependency>
 	</dependencies>
 
-<!-- 	<build> -->
-<!-- 		<plugins> -->
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.apache.felix</groupId> -->
-<!-- 				<artifactId>maven-bundle-plugin</artifactId> -->
-<!-- 				<configuration> -->
-<!-- 					<instructions> -->
-<!-- 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName> -->
-<!-- 						<Private-Package>sk.seges.fis.event.server.*</Private-Package> -->
-<!-- 						<Export-Package>sk.seges.fis.event.server.service.*,!sk.seges.fis.event.server.domain.*</Export-Package> -->
-<!-- 					</instructions> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
-<!-- 		</plugins> -->
-<!-- 	</build> -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Private-Package>sk.seges.fis.event.server.domain.*</Private-Package>
+						<Export-Package>sk.seges.fis.event.server.domain.*</Export-Package>
+						<Import-Package>org.hibernate.proxy,javassist.util.proxy,*</Import-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

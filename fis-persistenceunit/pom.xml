@@ -38,7 +38,21 @@
 	
 	<build>
 		<plugins>
-					<plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.felix</groupId> -->
+<!-- 				<artifactId>maven-bundle-plugin</artifactId> -->
+<!-- 				<configuration> -->
+<!-- 					<instructions> -->
+<!-- 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName> -->
+<!-- 						<Private-Package>sk.seges.fis.event.server.domain.*</Private-Package> -->
+<!-- 						<Export-Package>sk.seges.fis.event.server.domain.*</Export-Package> -->
+<!-- 						<Import-Package>org.hibernate.proxy,javassist.util.proxy,*</Import-Package> -->
+<!-- 					</instructions> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
+		
+		
+					<!--plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>openjpa-maven-plugin</artifactId>
 						<configuration>
@@ -66,8 +80,62 @@
 								<version>${slf4j.version}</version>
 							</dependency>
 						</dependencies>
-					</plugin>
-		
+					</plugin-->
+
+<!-- <plugin> -->
+<!--   <artifactId>maven-antrun-plugin</artifactId> -->
+<!--   <version>1.2</version> -->
+<!--   <executions> -->
+<!-- 	  <execution> -->
+<!-- 		  <phase>install</phase> -->
+<!-- 		  <goals> -->
+<!-- 			  <goal>run</goal> -->
+<!-- 		  </goals> -->
+<!-- 	  </execution> -->
+<!--   </executions> -->
+<!--   <configuration> -->
+<!-- 	  <tasks> -->
+<!-- 		  <property name="maven_test_classpath" refid="maven.test.classpath"></property> -->
+<!-- 		  <path id="hibernate_tools_path"> -->
+<!-- 			  <pathelement path="${maven_test_classpath}"></pathelement> -->
+<!-- 		  </path> -->
+<!-- 		  <property name="hibernate_tools_classpath" refid="hibernate_tools_path"></property> -->
+<!-- 		  <echo message="hibernate_tools classpath:  ${hibernate_tools_classpath}"></echo> -->
+<!-- 		  <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" -->
+<!-- 			  classpathref="maven.plugin.classpath"></taskdef> -->
+<!-- 		  <mkdir dir="${project.build.directory}/generated-sources/hibernate"></mkdir> -->
+<!-- 		  <hibernatetool destdir="${project.build.directory}/generated-sources/hibernate"> -->
+<!-- 			  <classpath refid="hibernate_tools_path"></classpath> -->
+<!-- 			  <jpaconfiguration persistenceunit="fis"></jpaconfiguration> -->
+<!-- 			  <hbm2ddl export="false" format="true" outputfilename="database.ddl"></hbm2ddl> -->
+<!-- 		  </hibernatetool> -->
+<!-- 	  </tasks> -->
+<!-- 	  <detail>true</detail> -->
+<!--   </configuration> -->
+<!--   <dependencies> -->
+<!-- 	  <dependency> -->
+<!-- 		  <groupId>org.hibernate</groupId> -->
+<!-- 		  <artifactId>hibernate-tools</artifactId> -->
+<!-- 		  <version>4.0.0-CR1</version> -->
+<!-- 		  <exclusions> -->
+<!-- 			  <exclusion> -->
+<!-- 				  <artifactId>hibernate-commons-annotations</artifactId> -->
+<!-- 				  <groupId>org.hibernate</groupId> -->
+<!-- 			  </exclusion> -->
+<!-- 		  </exclusions> -->
+<!-- 	  </dependency> -->
+<!-- 	  <dependency> -->
+<!-- 		  <groupId>org.slf4j</groupId> -->
+<!-- 		  <artifactId>slf4j-simple</artifactId> -->
+<!-- 		  <version>${slf4j.version}</version> -->
+<!-- 	  </dependency> -->
+<!-- 	  <dependency> -->
+<!-- 		  <groupId>org.slf4j</groupId> -->
+<!-- 		  <artifactId>slf4j-api</artifactId> -->
+<!-- 		  <version>${slf4j.version}</version> -->
+<!-- 	  </dependency> -->
+<!--   </dependencies> -->
+<!-- </plugin>		 -->
 		</plugins>
 	</build>
 </project>
